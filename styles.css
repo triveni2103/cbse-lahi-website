@@ -65,7 +65,7 @@
   position: relative;
   padding: 120px 20px 80px;
   background: var(--border);
-  text-align: center;
+  text-align: left;
   overflow: hidden;
 }
 /* HERO HEADING */
