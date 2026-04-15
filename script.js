@@ -27,6 +27,64 @@
     });
   }, { threshold: 0.08 });
   reveals.forEach(el => observer.observe(el));
+
+  // ── Hero checklist animation ──
+  const checkItems = document.querySelectorAll('.hero-check-item');
+  checkItems.forEach(item => {
+    const delay = parseInt(item.dataset.delay) || 0;
+    setTimeout(() => item.classList.add('visible'), delay);
+  });
+
+  // ── Stat counter animation ──
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1200;
+    const steps = 40;
+    const increment = target / steps;
+    let current = 0;
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      current = Math.min(Math.round(increment * step), target);
+      el.textContent = current + suffix;
+      if (step >= steps) clearInterval(timer);
+    }, duration / steps);
+  }
+
+  const statsSection = document.querySelector('.hero-stats-animate');
+  if (statsSection) {
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.stat-num[data-count]').forEach(animateCounter);
+          statsObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    statsObserver.observe(statsSection);
+  }
+
+  // ── Resource card accordion ──
+  document.querySelectorAll('.resource-card-visible').forEach(visible => {
+    const card = visible.closest('.resource-card');
+    const btn = visible.querySelector('.resource-view-btn');
+    visible.addEventListener('click', () => {
+      const isOpen = card.classList.contains('is-open');
+      // Close all
+      document.querySelectorAll('.resource-card.is-open').forEach(c => {
+        c.classList.remove('is-open');
+        const b = c.querySelector('.resource-view-btn');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+      // Open this one (toggle)
+      if (!isOpen) {
+        card.classList.add('is-open');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
  
   // ── Form submission → Google Forms ──
   function submitForm() {
