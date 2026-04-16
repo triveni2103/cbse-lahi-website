@@ -1249,14 +1249,14 @@
 .comp-aspect {
   font-weight: 600;
   color: var(--ink);
-}
-.comp-typical {
-  color: var(--muted);
   font-style: italic;
 }
+.comp-typical {
+  color: #aaa;
+}
 .comp-lahi {
-  color: var(--muted);
-  font-weight: 500;
+  color: var(--ink);
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
