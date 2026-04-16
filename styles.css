@@ -899,7 +899,7 @@
   .lahi-does-title {
     font-family: 'Fraunces', serif;
     font-size: 1.4rem; font-weight: 700;
-    color: white; margin-bottom: 6px;
+    color: rgb(29, 28, 28); margin-bottom: 6px;
   }
   .lahi-does-sub {
     font-size: 0.95rem; color: rgba(14, 14, 14, 0.8);
