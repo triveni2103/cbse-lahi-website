@@ -1429,15 +1429,9 @@ button {
 
 .hero-image {
   width: 100%;
-  aspect-ratio: 4 / 5;
-  min-height: 380px;
+  height: auto;
   max-height: 560px;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  box-shadow: 0 22px 54px rgba(26, 18, 9, 0.16);
+  object-fit: contain; /* important */
 }
 
 .hero-right-quote {
